@@ -1,29 +1,62 @@
-require('dotenv-safe').config();
-const { Telegraf } = require('telegraf');
-const { message } = require('telegraf/filters');
-const { PrismaClient } = require('@prisma/client');
+const { PrismaClient } = require("@prisma/client");
+
 // Instancie o cliente Prisma
 const prisma = new PrismaClient();
 
-// Função para salvar mensagem no banco de dados
-async function salvarMensagem(textoDaMensagem) {
+// Função para criar uma mensagem
+async function criarMensagem(texto) {
     try {
-        // Crie uma nova entrada de mensagem no banco de dados usando o método create do Prisma
-        const mensagemSalva = await prisma.message.create({
+        const mensagem = await prisma.message.create({
             data: {
-                texto: textoDaMensagem,
-                data: new Date()
-            }
+                texto: texto,
+            },
         });
-
-        console.log('Mensagem salva:', mensagemSalva);
-        return mensagemSalva;
+        console.log(`Mensagem "${mensagem.texto}" criada com sucesso.`);
     } catch (error) {
-        console.error('Erro ao salvar mensagem:', error);
-        throw error;
+        console.error("Erro ao criar mensagem:", error);
+    }
+}
+async function salvarMensagem(texto) {
+    try {
+        const mensagem = await prisma.mensagem.create({
+            data: {
+                texto: texto,
+            },
+        });
+        console.log("Mensagem salva no banco de dados:", mensagem);
+    } catch (error) {
+        console.error("Erro ao salvar a mensagem:", error);
     }
 }
 
-// Exemplo de uso
-const textoDaMensagem = "Olá, mundo!";
-salvarMensagem(textoDaMensagem);
+// Função para listar todas as mensagens
+async function listarMensagens() {
+    try {
+        const mensagem = await prisma.mensagem.findMany();
+        console.log("Mensagens:");
+        mensagem.forEach((mensagem) => {
+            console.log(`- ${mensagem.texto}`);
+        });
+    } catch (error) {
+        console.error("Erro ao listar mensagens:", error);
+    }
+}
+
+// Função principal
+async function main() {
+    // Criar mensagens
+    await salvarMensagem("Olá, mundo!");
+    await salvarMensagem("Este é um teste.");
+
+    // Listar mensagens
+    await listarMensagens();
+
+    // Fechar conexão com o Prisma
+    await prisma.$disconnect();
+}
+
+// Executar função principal
+main().catch((error) => {
+    console.error("Erro inesperado:", error);
+    process.exit(1);
+});
