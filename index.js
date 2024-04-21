@@ -1,26 +1,71 @@
+require("dotenv").config();
 const { PrismaClient } = require("@prisma/client");
-
-// Instancie o cliente Prisma
 const prisma = new PrismaClient();
 
-// Função para criar uma mensagem
-async function criarMensagem(texto) {
-    try {
-        const mensagem = await prisma.message.create({
-            data: {
-                texto: texto,
-            },
-        });
-        console.log(`Mensagem "${mensagem.texto}" criada com sucesso.`);
-    } catch (error) {
-        console.error("Erro ao criar mensagem:", error);
-    }
+const TelegramBot = require("node-telegram-bot-api");
+const token = process.env.BOT_TOKEN;
+const bot = new TelegramBot(token, { polling: true });
+
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// Executar função principal
+main().catch((error) => {
+    console.error("Erro inesperado:", error);
+    process.exit(1);
+});
+
+async function mandaMsgBot(bot) {
+    bot.on("message", (msg) => {
+        const chatId = msg.chat.id;
+
+        if (isHorarioComercial()) {
+            bot.sendMessage(
+                chatId,
+                "Horário comercial! Visite nosso site: https://faesa.br"
+            );
+        } else {
+            if (emailRegex.test(msg.text)) {
+                salvarMensagem(msg.text);
+                bot.sendMessage(
+                    chatId,
+                    `Obrigado! Seu e-mail (${msg.text}) foi cadastrado com sucesso. Em breve entraremos em contato. ✅ 👍`
+                );
+                return "";
+            }
+           if (msg.text === "ls") {
+               // lista os email cadatrados
+               (async () => {
+                   try {
+                       const listaDeEmails = await listarMensagens();
+                        bot.sendMessage(chatId, listaDeEmails);
+                      
+                   } catch (error) {
+                       console.error("Erro ao listar mensagens:", error);
+                   }
+               })();
+               return"";
+           }
+
+
+            bot.sendMessage(
+                chatId,
+                "Fora do horário comercial! Nosso horário de funcionamento é das 09:00 às 18:00. Por favor, deixe seu e-mail para entrarmos em contato."
+            );
+        }
+    });
 }
+
+function isHorarioComercial() {
+    const horaAtual = new Date().getHours();
+    return horaAtual >= 9 && horaAtual < 18;
+}
+
 async function salvarMensagem(texto) {
     try {
         const mensagem = await prisma.mensagem.create({
             data: {
                 texto: texto,
+                createdAt: new Date(),
             },
         });
         console.log("Mensagem salva no banco de dados:", mensagem);
@@ -29,14 +74,14 @@ async function salvarMensagem(texto) {
     }
 }
 
-// Função para listar todas as mensagens
-async function listarMensagens() {
+ async function listarMensagens() {
     try {
         const mensagem = await prisma.mensagem.findMany();
-        console.log("Mensagens:");
-        mensagem.forEach((mensagem) => {
-            console.log(`- ${mensagem.texto}`);
+        let listaFormatada = "";
+         mensagem.forEach((mensagem) => {
+            listaFormatada += `\n- ${mensagem.texto}`;
         });
+        return listaFormatada;
     } catch (error) {
         console.error("Erro ao listar mensagens:", error);
     }
@@ -44,19 +89,6 @@ async function listarMensagens() {
 
 // Função principal
 async function main() {
-    // Criar mensagens
-    await salvarMensagem("Olá, mundo!");
-    await salvarMensagem("Este é um teste.");
-
-    // Listar mensagens
-    await listarMensagens();
-
-    // Fechar conexão com o Prisma
+    await mandaMsgBot(bot);
     await prisma.$disconnect();
 }
-
-// Executar função principal
-main().catch((error) => {
-    console.error("Erro inesperado:", error);
-    process.exit(1);
-});

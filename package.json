@@ -20,5 +20,8 @@
     "mime-types": "^2.1.35",
     "node-telegram-bot-api": "^0.65.1",
     "undici-types": "^5.26.5"
+  },
+  "devDependencies": {
+    "@types/node-telegram-bot-api": "^0.64.6"
   }
 }
