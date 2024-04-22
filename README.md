@@ -1,6 +1,6 @@
 # Desenvolvimento de Aplicações Web II
 
-## Professor: Otávio Lube dos Santos
+## Professor:  [Otávio Lube dos Santos](https://www.linkedin.com/in/otaviolube/)🔗
 
 ### Descrição do Desafio
 
@@ -81,7 +81,7 @@ Se a mensagem foi enviada fora do horário comercial, o BOT deve informar o hor�
 
 #### visualizar e-mail cadastrados no sqlite:
 
-![Screenshot](/botc1/src/img/sql1.png) 
+![Screenshot](/src/img/sql1.png) 
 
 #### visualizar e-mail cadastrados por aplicativo do telegram:
 
