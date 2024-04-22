@@ -68,16 +68,16 @@ Se a mensagem foi enviada fora do horário comercial, o BOT deve informar o hor�
 
 #### Mensagem foi enviada em horário comercial:
 ```Observação: O horário comercial foi modificado para realizar testes na aplicação ```
-![Screenshot](/botc1/src/img/bot1.jpg) 
+![Screenshot](/src/img/bot1.jpg) 
 <br>
 
 #### Mensagem foi enviada fora do horário comercial:
 
-![Screenshot](/botc1/src/img/bot2.jpg) 
+![Screenshot](/src/img/bot2.jpg) 
 
 #### Cadastra e-mail:
 
-![Screenshot](/botc1/src/img/bot3.jpg) 
+![Screenshot](/src/img/bot3.jpg) 
 
 #### visualizar e-mail cadastrados no sqlite:
 
@@ -85,11 +85,11 @@ Se a mensagem foi enviada fora do horário comercial, o BOT deve informar o hor�
 
 #### visualizar e-mail cadastrados por aplicativo do telegram:
 
-![Screenshot](/botc1/src/img/bot4.jpg) 
+![Screenshot](/src/img/bot4.jpg) 
 
 #### visualizar e-mail cadastrados por uma pagina web:
 
-![Screenshot](/botc1/src/img/web1.png) 
+![Screenshot](/src/img/web1.png) 
 
 
 ---
