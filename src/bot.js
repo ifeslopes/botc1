@@ -8,6 +8,7 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 async function mandaMsgBot() {
     const token = process.env.BOT_TOKEN;
+    const idchat = process.env.CHAT_ID;
     const bot = new TelegramBot(token, { polling: true });
 
     bot.on("message", async (msg) => {

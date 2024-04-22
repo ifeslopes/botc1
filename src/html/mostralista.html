@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de E-mails Cadastrados</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #header {
+            background-color: #f0f0f0;
+            width: 100%;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        #lista-emails {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* Reduz a largura das colunas */
+        td:nth-child(1),
+        td:nth-child(2) {
+            width: 40%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <h1>Lista de E-mails Cadastrados</h1>
+    </div>
+
+    <div id="lista-emails"></div>
+
+    <table id="tabela-dados">
+        <thead>
+            <tr>
+                <th>E-mail</th>
+                <th>Data</th>
+            </tr>
+        </thead>
+        <tbody id="corpo-tabela"></tbody>
+    </table>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('/dados')
+                .then(response => response.text())
+                .then(data => {
+                   
+
+                    // Obter dados para a tabela
+                    const dados = converterStringParaLista(data)
+                    
+                    
+                  
+                    // Exibir os dados na tabela
+                    const corpoTabela = document.getElementById('corpo-tabela');
+                    dados.forEach(item => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `<td>${item.email}</td><td>${item.data}</td>`;
+                        corpoTabela.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Erro ao obter dados:', error));
+        });
+
+        function converterStringParaLista(str) {
+                const regex = /(.+?):\s*\n(.+?)\s*\n/g;
+                const lista = [];
+                let match;
+
+           
+                while ((match = regex.exec(str)) !== null) {
+                    const email = match[1];
+                    const data = match[2];
+                    lista.push({ email: email, data: data});
+                     
+                }
+
+                return lista;
+            }
+    </script>
+</body>
+
+</html>

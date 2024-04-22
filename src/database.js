@@ -25,8 +25,11 @@ async function listarMensagens() {
         const mensagens = await prisma.mensagem.findMany();
         let listaFormatada = "";
         mensagens.forEach((mensagem) => {
-            listaFormatada += `\n- ${mensagem.texto}`;
+            listaFormatada += `\n\n 📨 ${
+                mensagem.texto
+            } \n 📆 ${mensagem.createdAt.toString().split("GMT")[0].trim()}-`;
         });
+
         return listaFormatada;
     } catch (error) {
         console.error("Erro ao listar mensagens:", error);
