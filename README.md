@@ -45,8 +45,13 @@ Se a mensagem foi enviada fora do horário comercial, o BOT deve informar o hor�
 
 4. **Execução do Projeto:** ⚙️
    - Após a instalação das dependências, execute o comando `node index.js` no terminal para iniciar o bot.
-5. **diretório  e Arquivos:** 📁
-   - 
+
+
+5. **Execução do Projeto Via Docker:** 🐳            - Após, incluir token no arquivo .env execute esses comandos `docker-compose up --build -d`e `docker-compose up `.
+
+
+6. **diretório  e Arquivos:** 📁
+   -
     ```
     src
         ├── apiweb.js
@@ -68,28 +73,28 @@ Se a mensagem foi enviada fora do horário comercial, o BOT deve informar o hor�
 
 #### Mensagem foi enviada em horário comercial:
 ```Observação: O horário comercial foi modificado para realizar testes na aplicação ```
-![Screenshot](/src/img/bot1.jpg) 
+![Screenshot](/src/img/bot1.jpg)
 <br>
 
 #### Mensagem foi enviada fora do horário comercial:
 
-![Screenshot](/src/img/bot2.jpg) 
+![Screenshot](/src/img/bot2.jpg)
 
 #### Cadastra e-mail:
 
-![Screenshot](/src/img/bot3.jpg) 
+![Screenshot](/src/img/bot3.jpg)
 
 #### visualizar e-mail cadastrados no sqlite:
 
-![Screenshot](/src/img/sql1.png) 
+![Screenshot](/src/img/sql1.png)
 
 #### visualizar e-mail cadastrados por aplicativo do telegram:
 
-![Screenshot](/src/img/bot4.jpg) 
+![Screenshot](/src/img/bot4.jpg)
 
 #### visualizar e-mail cadastrados por uma pagina web:
 
-![Screenshot](/src/img/web1.png) 
+![Screenshot](/src/img/web1.png)
 
 
 ---

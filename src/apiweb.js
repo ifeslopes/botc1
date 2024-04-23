@@ -10,8 +10,8 @@ const {
 
 async function apiWeb() {
     app.use(express.static("html"));
-    
-  
+
+
      app.get("/", (req, res) => {
         res.sendFile(__dirname+"/html/mostralista.html")
      });
@@ -19,18 +19,17 @@ async function apiWeb() {
     // Rota para mostrar os dados da lista
     app.get("/dados", (req, res) => {
         var response ="";
-         
+
         const listaPromise = dadosBanco();
-        
+
          listaPromise.then(lista => {
 
             lista.forEach((item) => {
-                
+
                 const data=  converterDataParaPtBr(item.data);
                 response += `📨 ${item.email}:\n📆 ${ data }\n\n`;
             })
-        
-            console.log("ATUALIZAAA!!!!!"+ response)
+
             res.send(response);
         });
 
@@ -56,7 +55,7 @@ function converterStringParaLista(str) {
     const regex = / 📨 (.+?)\s* 📆 (.+?)-/g;
     const lista = [];
     let match;
-    
+
 
     while ((match = regex.exec(str)) !== null) {
         const email = match[1];
