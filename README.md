@@ -47,10 +47,11 @@ Se a mensagem foi enviada fora do horário comercial, o BOT deve informar o hor�
    - Após a instalação das dependências, execute o comando `node index.js` no terminal para iniciar o bot.
 
 
-5. **Execução do Projeto Via Docker:** 🐳            - Após, incluir token no arquivo .env execute esses comandos `docker-compose up --build -d`e `docker-compose up `.
+5. **Execução do Projeto Via Docker:** 🐳
+   - Após, incluir token no arquivo .env execute esses comandos `docker-compose up --build -d`e `docker-compose up `.
 
 
-6. **diretório  e Arquivos:** 📁
+7. **diretório  e Arquivos:** 📁
    -
     ```
     src
