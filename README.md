@@ -1,8 +1,8 @@
-# Desenvolvimento de Aplicações Web II
+#  Disciplina: Desenvolvimento de Aplicações Web II
 
 ## Professor:  [Otávio Lube dos Santos](https://www.linkedin.com/in/otaviolube/)🔗
 
-### Descrição do Desafio
+### Descrição do Desafio: Bot Telegram 🤖
 
 Uma grande empresa atacadista contatou a equipe de desenvolvedores da turma de Dev Web II para o desenvolvimento de um 🤖BOT de atendimento. O BOT, inicialmente, deve funcionar no aplicativo TELEGRAM📱. Ao receber uma mensagem💬, o BOT deve avaliar o horário em que a mensagem foi enviada. Se a mensagem foi enviada em horário comercial (09:00 às 18:00), o  BOT deve informar para o usuário o link: [https://faesa.br](https://faesa.br).
 
