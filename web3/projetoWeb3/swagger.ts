@@ -3,9 +3,9 @@ const swaggerAutogen = require('swagger-autogen')({ openapi: '3.0.0' });
 const doc = {
     info: {
         version: '1.0.0',
-        title: 'Projeto Prático da C2 C3',
+        title: 'DESENVOLVIMENTO DE APLICAÇÕES WEB II  C2, C3',
         description:
-            ' projeto prático da C2 será a implementação de uma API usando NodeJS, Typescript, Prisma e um banco de dados a sua escolha (sugiro o SQLite), Vocês deverão implementar o padrão MVC para os modelos existentes no Prisma Quickstart (https://www.prisma.io/docs/getting-started/quickstart). Adicionalmente, vocês deverão incluir um modelo para Comentários: um Post possui vários Comentários e cada Comentário pertence a somente um Post. Além disso, um Usuário faz um Comentário.',
+            ' Este projeto consiste na criação de uma API de co utilizando o padrão MVC, implementando modelos existentes no Prisma Quickstart e adicionando um modelo para Comentários. Além disso, será desenvolvido um mecanismo de autenticação via Tokens JWT para a API',
         contact: {
             name: 'API Support',
             url: 'https://github.com/howardroatti',
@@ -87,43 +87,43 @@ const doc = {
                 name: 'John Doe',
                 password: '123',
             },
-                Autenticacao: {
-        type: "object",
-        properties: {
-          auth: { type: "boolean", example: true },
-          status: { type: "integer", example: 200 },
-          profissional: {
-            type: "object",
-            properties: {
-              idProfissional: { type: "integer", example: 1 },
-              nome: { type: "string", example: "1" },
-              cpf: { type: "string", example: "2" },
-              funcao: { type: "string", example: "3" },
-              email: { type: "string", example: "novo" },
-              password: {
-                type: "string",
-                example:
-                  "$2b$10$PrdniTrjj3cRGgyfjHlKIez1VrqDIYPhnkXNNJFIIaSzWjIPzUfYS",
-              },
-              nivelAcesso: { type: "string", example: "1" },
+            Autenticacao: {
+                type: 'object',
+                properties: {
+                    auth: { type: 'boolean', example: true },
+                    status: { type: 'integer', example: 200 },
+                    profissional: {
+                        type: 'object',
+                        properties: {
+                            idProfissional: { type: 'integer', example: 1 },
+                            nome: { type: 'string', example: '1' },
+                            cpf: { type: 'string', example: '2' },
+                            funcao: { type: 'string', example: '3' },
+                            email: { type: 'string', example: 'novo' },
+                            password: {
+                                type: 'string',
+                                example:
+                                    '$2b$10$PrdniTrjj3cRGgyfjHlKIez1VrqDIYPhnkXNNJFIIaSzWjIPzUfYS',
+                            },
+                            nivelAcesso: { type: 'string', example: '1' },
+                        },
+                    },
+                    success: { type: 'boolean', example: true },
+                    token: {
+                        type: 'string',
+                        example:
+                            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibm9tZSI6IjEiLCJuaXZlbEFjZXNzbyI6IjEiLCJpYXQiOjE3MTcwOTA1ODksImV4cCI6MTcxNzA5MjM4OX0.OhP7hJhmJwXR8rzzBuVAnl6gxF44AkQGRVNF7vA4wls',
+                    },
+                    message: { type: 'string', example: 'Login bem sucedido.' },
+                },
             },
-          },
-          success: { type: "boolean", example: true },
-          token: {
-            type: "string",
-            example:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibm9tZSI6IjEiLCJuaXZlbEFjZXNzbyI6IjEiLCJpYXQiOjE3MTcwOTA1ODksImV4cCI6MTcxNzA5MjM4OX0.OhP7hJhmJwXR8rzzBuVAnl6gxF44AkQGRVNF7vA4wls",
-          },
-          message: { type: "string", example: "Login bem sucedido." },
-        },
-      },
 
-      AutenticacaoLogin: {
-        email: "profissional@gmail.com",
-        password: "senha123",
-      },
+            AutenticacaoLogin: {
+                email: 'profissional@gmail.com',
+                password: 'senha123',
+            },
+        },
     },
-  },
 };
 
 
